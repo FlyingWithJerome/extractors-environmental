@@ -45,9 +45,9 @@ class EnvironmentLoggerJSON2NetCDF(Extractor):
     def check_message(self, connector, host, secret_key, resource, parameters):
         # Only trigger extraction if the newly added file is a relevant JSON file
         if not resource['name'].endswith("_environmentlogger.json"):
-            return False
+            return CheckMessage.ignore
 
-        return True
+        return CheckMessage.download
 
     def process_message(self, connector, host, secret_key, resource, parameters):
         # path to input JSON file
